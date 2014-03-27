@@ -51,7 +51,7 @@ public class HolidaysAccessor {
 
         SearchResponse response = requestBuilder
                 .setTypes(TYPE)
-                .addFields("latitude","longitude","min_price")
+                .addFields("latitude","longitude","min_price","destination_name")
                 .setSearchType(SearchType.QUERY_THEN_FETCH)
                 .setQuery(queryBuilder)
                 .execute()
@@ -70,17 +70,24 @@ public class HolidaysAccessor {
         List<HolidayResult> holidays = new ArrayList<HolidayResult>();
         for (SearchHit hit : results) {
             Map<String, SearchHitField> fields = hit.getFields();
-            String latitude = fields.get("latitude").getValue();
-            String longitude = fields.get("longitude").getValue();
-            String price = fields.get("min_price").getValue();
-            String info = fields.get("destination_name").getValue();
+            String latitude = getNonNullFieldValue("latitude",fields);
+            String longitude = getNonNullFieldValue("longitude",fields);
+            String price = getNonNullFieldValue("min_price",fields);
+            String info = getNonNullFieldValue("destination_name",fields);
             holidays.add(new HolidayResult(latitude,longitude,price,info));
         }
         return holidays;
 
     }
 
+    private String getNonNullFieldValue(String key, Map<String, SearchHitField> fields){
 
+        SearchHitField field  = fields.get(key);
+        if(field != null){
+            return field.getValue();
+        }
+        return null;
+    }
 
     private FilterBuilder[] buildFilters(HolidayPayload holidayEnquiry){
         List<FilterBuilder> filters = new ArrayList<FilterBuilder>();
