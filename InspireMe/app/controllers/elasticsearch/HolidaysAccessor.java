@@ -119,7 +119,7 @@ public class HolidaysAccessor {
 
         List<InetSocketTransportAddress> inetSocketTransportAddresses = new ArrayList<InetSocketTransportAddress>();
 
-        inetSocketTransportAddresses.add(new InetSocketTransportAddress("54.72.117.93", 9200));
+        inetSocketTransportAddresses.add(new InetSocketTransportAddress("54.72.117.93", 9300));
 //        inetSocketTransportAddresses.add(new InetSocketTransportAddress("2.elasticsearch.tsm", 9300));
 
         addresses = inetSocketTransportAddresses.toArray(new InetSocketTransportAddress[inetSocketTransportAddresses.size()]);
