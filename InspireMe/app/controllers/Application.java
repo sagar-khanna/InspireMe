@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import play.api.templates.Html;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.main;
 
 import java.util.List;
 
