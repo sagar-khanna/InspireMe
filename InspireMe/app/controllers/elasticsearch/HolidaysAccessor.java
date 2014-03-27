@@ -36,7 +36,7 @@ public class HolidaysAccessor {
     // TODO need to add the correct index name
     private static final String INDEX_NAME ="inspireme";
     //TODO need to set the correct type
-    private static final String TYPE = "holiday";
+    private static final String TYPE = "hackathon";
 
     public String getHolidays(HolidayPayload payload) throws JsonProcessingException {
         Client client = getClient();
