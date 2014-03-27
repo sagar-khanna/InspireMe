@@ -51,7 +51,7 @@ public class HolidaysAccessor {
 
         queryBuilder = QueryBuilders.matchAllQuery();
 
-        SearchRequestBuilder requestBuilder = client.prepareSearch(INDEX_NAME);
+        SearchRequestBuilder requestBuilder = client.prepareSearch(INDEX_NAME).setSize(300);
 
         SearchResponse response = requestBuilder
                 .setTypes(TYPE)
