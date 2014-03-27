@@ -94,7 +94,7 @@ public class HolidaysAccessor {
     private FilterBuilder[] buildFilters(HolidayPayload holidayEnquiry){
         List<FilterBuilder> filters = new ArrayList<FilterBuilder>();
 
-        filters.add(FilterBuilders.termFilter("departure_airport_code",holidayEnquiry.getFromAirport()));
+        filters.add(FilterBuilders.termFilter("departure_airport_code",holidayEnquiry.getFromAirport().toLowerCase()));
         filters.add(FilterBuilders.termFilter("num_adult",holidayEnquiry.getNumAdults()));
         if(holidayEnquiry.getNumChildren()>0){
             filters.add(FilterBuilders.termFilter("num_child",holidayEnquiry.getNumAdults()));
@@ -103,7 +103,7 @@ public class HolidaysAccessor {
             filters.add(FilterBuilders.termFilter("num_infant",holidayEnquiry.getNumInfants()));
         }
         filters.add(FilterBuilders.termFilter("duration",holidayEnquiry.getDuration()));
-        filters.add(FilterBuilders.termFilter("ob_departure_date",holidayEnquiry.getDateFrom()));
+        filters.add(FilterBuilders.termFilter("ob_departure_date",holidayEnquiry.getDateFrom().toLowerCase()));
 
         return filters.toArray(new FilterBuilder[filters.size()]);
     }
