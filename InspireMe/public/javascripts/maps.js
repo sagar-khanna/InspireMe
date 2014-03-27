@@ -79,7 +79,7 @@ function refreshMap(foundData) {
                 if (tmp.price < lowest.price) lowest = tmp;
             }
 
-            var priceIndex = Math.floor(  lowest.index / (foundData.length / numStyles)) + 1;
+            var priceIndex = Math.floor(  lowest.index / (foundData.length / numStyles));
 
             return {
                 text: lowest.price,
