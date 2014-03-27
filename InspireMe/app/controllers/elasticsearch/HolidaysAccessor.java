@@ -18,6 +18,8 @@ import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHitField;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +33,11 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class HolidaysAccessor {
-
+    private static final Logger logger = LoggerFactory.getLogger(HolidaysAccessor.class);
     // TODO need to add the correct index name
     private static final String INDEX_NAME ="inspireme";
     //TODO need to set the correct type
-    private static final String TYPE = "holiday";
+    private static final String TYPE = "hackathon";
 
     public String getHolidays(HolidayPayload payload) throws JsonProcessingException {
         Client client = getClient();
@@ -47,7 +49,7 @@ public class HolidaysAccessor {
                 .matchAllQuery(), FilterBuilders
                 .andFilter(buildFilters(payload)));
 
-//        queryBuilder = QueryBuilders.matchAllQuery();
+        queryBuilder = QueryBuilders.matchAllQuery();
 
         SearchRequestBuilder requestBuilder = client.prepareSearch(INDEX_NAME);
 
@@ -79,14 +81,13 @@ public class HolidaysAccessor {
             holidays.add(new HolidayResult(latitude,longitude,price,info));
         }
         return holidays;
-
     }
 
     private String getNonNullFieldValue(String key, Map<String, SearchHitField> fields){
 
         SearchHitField field  = fields.get(key);
         if(field != null){
-            return field.getValue();
+            return field.getValue().toString();
         }
         return null;
     }
@@ -94,16 +95,16 @@ public class HolidaysAccessor {
     private FilterBuilder[] buildFilters(HolidayPayload holidayEnquiry){
         List<FilterBuilder> filters = new ArrayList<FilterBuilder>();
 
-        filters.add(FilterBuilders.termFilter("departure_airport_code",holidayEnquiry.getFromAirport()));
-        filters.add(FilterBuilders.termFilter("num_adult",holidayEnquiry.getNumAdults()));
-        if(holidayEnquiry.getNumChildren()>0){
-            filters.add(FilterBuilders.termFilter("num_child",holidayEnquiry.getNumAdults()));
-        }
-        if(holidayEnquiry.getNumInfants()>0){
-            filters.add(FilterBuilders.termFilter("num_infant",holidayEnquiry.getNumInfants()));
-        }
-        filters.add(FilterBuilders.termFilter("duration",holidayEnquiry.getDuration()));
-        filters.add(FilterBuilders.termFilter("ob_departure_date",holidayEnquiry.getDateFrom()));
+//        filters.add(FilterBuilders.termFilter("departure_airport_code",holidayEnquiry.getFromAirport().toLowerCase()));
+//        filters.add(FilterBuilders.termFilter("num_adult",holidayEnquiry.getNumAdults()));
+//        if(holidayEnquiry.getNumChildren()>0){
+//            filters.add(FilterBuilders.termFilter("num_child",holidayEnquiry.getNumAdults()));
+//        }
+//        if(holidayEnquiry.getNumInfants()>0){
+//            filters.add(FilterBuilders.termFilter("num_infant",holidayEnquiry.getNumInfants()));
+//        }
+//        filters.add(FilterBuilders.termFilter("duration",holidayEnquiry.getDuration()));
+//        filters.add(FilterBuilders.termFilter("ob_departure_date",holidayEnquiry.getDateFrom().toLowerCase()));
 
         return filters.toArray(new FilterBuilder[filters.size()]);
     }
@@ -119,7 +120,7 @@ public class HolidaysAccessor {
 
         List<InetSocketTransportAddress> inetSocketTransportAddresses = new ArrayList<InetSocketTransportAddress>();
 
-        inetSocketTransportAddresses.add(new InetSocketTransportAddress("54.72.117.93", 9200));
+        inetSocketTransportAddresses.add(new InetSocketTransportAddress("54.72.117.93", 9300));
 //        inetSocketTransportAddresses.add(new InetSocketTransportAddress("2.elasticsearch.tsm", 9300));
 
         addresses = inetSocketTransportAddresses.toArray(new InetSocketTransportAddress[inetSocketTransportAddresses.size()]);
