@@ -133,16 +133,14 @@ body {
 @media (min-width: 768px) {
     /* Pull out the header and footer */
     .masthead {
-        position: fixed;
         top: 0;
     }
     .mastfoot {
-        position: fixed;
         bottom: 0;
     }
     /* Start the vertical centering */
     .site-wrapper-inner {
-        vertical-align: middle;
+        /*vertical-align: middle; */
     }
     /* Handle the widths */
     .masthead,
@@ -156,6 +154,6 @@ body {
     .masthead,
     .mastfoot,
     .cover-container {
-        width: 700px;
+        width: 70%;
     }
 }
