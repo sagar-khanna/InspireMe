@@ -29,8 +29,6 @@ public class Application extends Controller {
         if (!errors.isEmpty()) {
             return badRequest(errors.toString());
         }
-        // TODO Do a search
-
         HolidaysAccessor accessor = new HolidaysAccessor();
         String holidays = accessor.getHolidays(holidayPayload);
         return ok(holidays);
