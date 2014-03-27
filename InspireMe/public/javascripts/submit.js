@@ -7,6 +7,14 @@ jQuery(document).ready(function() {
         $.each( formVals, function( key, value ) {
             str += "/" + value.value;
         });
-        $.get( '/search/holidays' + str);
+        var someData = $.get( '/search/holidays' + str, function( data ) {
+            refreshMap(data)
+        });
+        /*for (var key in someData) {
+            console.log(key);
+        }
+        console.log("SomeData = " + someData);
+        refreshMap(someData)
+        */
     });
 });

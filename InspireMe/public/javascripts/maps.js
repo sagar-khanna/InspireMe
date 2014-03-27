@@ -5,41 +5,55 @@ google.load('maps', '3', {
 
 google.setOnLoadCallback(initialize);
 
-//console.log(data[0].longitude);
+//console.log(foundData[0].lang);
 
 var markerClusterer = null;
 var map = null;
 console.log("map is null");
 var imageUrl = './images/icon3.png';
 
-function refreshMap() {
+function refreshMap(foundData) {
+    console.log("found foundData " + foundData);
+
+    if (foundData == undefined) {
+        foundData = [];
+    } else {
+        foundData = $.parseJSON(String(foundData));
+    }
     if (markerClusterer) {
         markerClusterer.clearMarkers();
     }
 
-    data.sort(function(a,b) { return parseFloat(a.price) - parseFloat(b.price) } );
+    console.log(foundData[0]);
+
+    for (var key in foundData) {
+        console.log(key);
+    }
+
+
+    foundData.sort(function(a,b) { return parseFloat(a.price) - parseFloat(b.price) } );
 
     var markers = [];
 
     // var markerImage = new google.maps.MarkerImage("./images/icon" + priceIndex);
     // new google.maps.Size(24, 32));
     var numIcons = 3;
-    for (var i = 0; i < data.length; ++i) {
+    for (var i = 0; i < foundData.length; ++i) {
 
-        var priceIndex = Math.floor(  i / (data.length / numIcons)) + 1;
+        var priceIndex = Math.floor(  i / (foundData.length / numIcons)) + 1;
         //console.log("priceIndex = " + priceIndex);
-        //var priceIndex = data[i].price > 200 ? 3 : 1;
+        //var priceIndex = foundData[i].price > 200 ? 3 : 1;
         var markerImage = images[priceIndex - 1];//new google.maps.MarkerImage("./images/icon" + priceIndex + ".png");
         console.log("markerImage = " + markerImage + " index = " + priceIndex);
-        var latLng = new google.maps.LatLng(data[i].latitude,
-            data[i].longitude)
+        var latLng = new google.maps.LatLng(foundData[i].lat,
+            foundData[i].lang)
         console.log('map = ' + map);
 
         var marker = new google.maps.Marker({
             position: latLng,
             draggable: false,
             icon: markerImage,
-            price: data[i].price,
+            price: foundData[i].price,
             index: i
         });
 
@@ -65,7 +79,7 @@ function refreshMap() {
                 if (tmp.price < lowest.price) lowest = tmp;
             }
 
-            var priceIndex = Math.floor(  lowest.index / (data.length / numStyles)) + 1;
+            var priceIndex = Math.floor(  lowest.index / (foundData.length / numStyles)) + 1;
 
             return {
                 text: lowest.price,
