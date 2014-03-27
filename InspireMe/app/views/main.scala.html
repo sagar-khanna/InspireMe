@@ -1,5 +1,193 @@
 @(title: String)(content: Html)
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/cover.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
 
+        <title>Inspire Me | Travel Map </title>
+
+            <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("bootstrap/css/bootstrap.min.css")">
+            <!-- Just for debugging purposes. Don't actually copy this line! -->
+            <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+            <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+            <!--[if lt IE 9]>
+              <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+              <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+            <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="site-wrapper">
+
+            <div class="site-wrapper-inner">
+
+                <div class="cover-container">
+
+                    <div class="masthead clearfix">
+                        <div class="inner">
+                            <h3 class="masthead-brand">Inspire Me...</h3>
+                            <ul class="nav masthead-nav">
+                                <li class="active"><a href="#">Home</a></li>
+                                <li><a href="#">About Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="inner cover">
+                        <h1 class="cover-heading">Don't know where to go for your holiday this year..!</h1>
+                        <p class="lead"></p>
+                        <div>
+                            <form>
+                                <label for="sel-departing-from-1">
+                                    <span>Departing From</span>
+                                    <select id="sel-departing-from-1" name="DepartingFrom1">
+                                        <option value="">-- Please select --</option>
+                                        <optgroup label="-------------------">
+                                            <option value="2">Any London</option>
+                                            <option value="3">Any Midlands</option>
+                                            <option value="4">Any North East</option>
+                                            <option value="5">Any North West</option>
+                                            <option value="6">Any Northern Ireland</option>
+                                            <option value="7">Any Scotland</option>
+                                            <option value="8">Any South East</option>
+                                            <option value="9">Any South West and Wales</option>
+                                        </optgroup>
+                                        <optgroup label="-------------------">
+                                            <option value="ABZ">Aberdeen</option>
+                                            <option value="BHD">Belfast Harbour</option>
+                                            <option value="BFS">Belfast - International</option>
+                                            <option value="BHX">Birmingham</option>
+                                            <option value="BLK">Blackpool</option>
+                                            <option value="BOH">Bournemouth</option>
+                                            <option value="BRS">Bristol</option>
+                                            <option value="CWL">Cardiff</option>
+                                            <option value="LDY">City of Derry</option>
+                                            <option value="MME">Durham Tees Valley Airport</option>
+                                            <option value="EMA">East Midlands</option>
+                                            <option value="EDI">Edinburgh</option>
+                                            <option value="EXT">Exeter</option>
+                                            <option value="GLA">Glasgow Intl</option>
+                                            <option value="PIK">Glasgow Prestwick</option>
+                                            <option value="HUY">Humberside</option>
+                                            <option value="LBA">Leeds Bradford</option>
+                                            <option value="LPL">Liverpool</option>
+                                            <option value="LCY">London - City</option>
+                                            <option value="LGW">London - Gatwick</option>
+                                            <option value="LHR">London - Heathrow</option>
+                                            <option value="LTN">London - Luton</option>
+                                            <option value="SEN">London - Southend</option>
+                                            <option value="STN">London - Stansted</option>
+                                            <option value="MAN">Manchester</option>
+                                            <option value="NCL">Newcastle</option>
+                                            <option value="NWI">Norwich</option>
+                                            <option value="DSA">Robin Hood Doncaster Sheffield</option>
+                                            <option value="SOU">Southampton</option>
+                                        </optgroup>
+                                    </select>
+                                </label>
+
+                                <label for="sel-duration">Trip duration</label>
+                                <select id="sel-duration" name="Duration" class="valid">
+                                    <optgroup label="Popular Durations">
+                                        <option value="7">7 nights</option>
+                                        <option value="10">10 nights</option>
+                                        <option value="14">14 nights</option>
+                                    </optgroup>
+                                    <optgroup label="All durations">
+                                        <option value="1">1 night</option>
+                                        <option value="2">2 nights</option>
+                                        <option value="3">3 nights</option>
+                                        <option value="4">4 nights</option>
+                                        <option value="5">5 nights</option>
+                                        <option value="6">6 nights</option>
+                                        <option value="7">7 nights</option>
+                                        <option value="8">8 nights</option>
+                                        <option value="9">9 nights</option>
+                                        <option value="10">10 nights</option>
+                                        <option value="11">11 nights</option>
+                                        <option value="12">12 nights</option>
+                                        <option value="13">13 nights</option>
+                                        <option value="14">14 nights</option>
+                                        <option value="15">15 nights</option>
+                                        <option value="16">16 nights</option>
+                                        <option value="17">17 nights</option>
+                                        <option value="18">18 nights</option>
+                                        <option value="19">19 nights</option>
+                                        <option value="20">20 nights</option>
+                                        <option value="21">21 nights</option>
+                                        <option value="22">22 nights</option>
+                                    </optgroup>
+                                </select>
+
+                                <label for="sel-who-is-going-adult" id="sel-who-is-going-adult-label">
+                                    <span>Adults</span>
+                                    <select id="sel-who-is-going-adult" name="Adults">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                    </select>
+                                </label>
+                                <label for="sel-who-is-going-children" id="sel-who-is-going-adult-label">
+                                    <span>Children (0-17 years)</span>
+                                    <select id="sel-who-is-going-children" name="Children">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                    </select>
+                                </label>
+
+                                <p class="lead">
+                                    <button class="btn btn-lg btn-primary" type="button">Go</button>
+                                </p>
+
+                            </form>
+                        </div>
+
+
+                    </div>
+
+                    <div class="mastfoot">
+                        <div class="inner">
+                            <p>This is my footer <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo"></a>.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("bootstrap/js/bootstrap.min.js")" type="text/javascript"></script>
+
+    </body>
+</html>
+
+<!--
 <!DOCTYPE html>
 
 <html>
@@ -13,3 +201,4 @@
         @content
     </body>
 </html>
+-->
