@@ -1,4 +1,5 @@
 jQuery(document).ready(function() {
+    initialize();
 
     $('button#submitButton').click( function() {
         var formVals =  $('form#inspireMeSearch').serializeArray();
