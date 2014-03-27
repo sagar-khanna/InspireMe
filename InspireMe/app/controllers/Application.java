@@ -15,7 +15,7 @@ public class Application extends Controller {
     private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 
     public static Result index() {
-        return ok("Hello World");
+        return ok(main.render("Inspire Me Search", new Html(null)));
     }
 
     public static Result search(
