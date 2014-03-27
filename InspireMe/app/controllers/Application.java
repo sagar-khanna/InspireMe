@@ -1,5 +1,7 @@
 package controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import controllers.elasticsearch.HolidaysAccessor;
 import dao.entity.HolidayPayload;
 import dao.validation.Validator;
 import org.slf4j.Logger;
@@ -18,7 +20,7 @@ public class Application extends Controller {
     }
 
     public static Result search(
-            String fromAirport, String dateFrom, int duration, int numAdults, int numChildren, int numInfants) {
+            String fromAirport, String dateFrom, int duration, int numAdults, int numChildren, int numInfants) throws JsonProcessingException {
         HolidayPayload holidayPayload =
                 new HolidayPayload(fromAirport, dateFrom, duration, numAdults, numChildren, numInfants);
         Validator validator = new Validator(holidayPayload);
@@ -27,6 +29,9 @@ public class Application extends Controller {
             return badRequest(errors.toString());
         }
         // TODO Do a search
-        return ok(holidayPayload.toString());
+
+        HolidaysAccessor accessor = new HolidaysAccessor();
+        String holidays = accessor.getHolidays(holidayPayload);
+        return ok(holidays);
     }
 }
