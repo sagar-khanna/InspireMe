@@ -32,8 +32,10 @@ import java.util.Map;
  */
 public class HolidaysAccessor {
 
-    private static final String INDEX_NAME ="test";
-    private static final String TYPE = "type";
+    // TODO need to add the correct index name
+    private static final String INDEX_NAME ="inspireme";
+    //TODO need to set the correct type
+    private static final String TYPE = "holiday";
 
     public String getHolidays(HolidayPayload payload) throws JsonProcessingException {
         Client client = getClient();
