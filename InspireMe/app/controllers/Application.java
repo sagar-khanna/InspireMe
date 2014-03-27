@@ -4,7 +4,9 @@ import dao.entity.HolidayPayload;
 import dao.validation.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import play.api.templates.Html;
 import play.mvc.*;
+import views.html.main;
 
 import java.util.List;
 
