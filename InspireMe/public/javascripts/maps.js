@@ -29,8 +29,8 @@ function refreshMap() {
         var priceIndex = Math.floor(  i / (data.length / numIcons)) + 1;
         //console.log("priceIndex = " + priceIndex);
         //var priceIndex = data[i].price > 200 ? 3 : 1;
-        var markerImage = images[priceIndex];//new google.maps.MarkerImage("./images/icon" + priceIndex + ".png");
-        console.log("markerImage = " + markerImage);
+        var markerImage = images[priceIndex - 1];//new google.maps.MarkerImage("./images/icon" + priceIndex + ".png");
+        console.log("markerImage = " + markerImage + " index = " + priceIndex);
         var latLng = new google.maps.LatLng(data[i].latitude,
             data[i].longitude)
         console.log('map = ' + map);
